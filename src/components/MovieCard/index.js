@@ -21,7 +21,7 @@ const MovieCard = ({ data }) => {
   }
 
   useEffect(() => {
-    document.body.style.backgroundImage = 'url(' + backdropIMG + ')';
+    if (data.backdrop) document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
   });
 
   return (
@@ -52,7 +52,7 @@ const MovieCard = ({ data }) => {
                 <Grid.Column> Vote Average: <span className="meta-data">{data.vote}</span></Grid.Column>
               </Grid.Row>
             </Grid>
-            </div>
+          </div>
         </Card.Description>
       </Card.Content>
     </Card>
