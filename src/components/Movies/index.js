@@ -10,7 +10,7 @@ const Movies = ({ list }) => {
     }
 
     return (
-        <Grid columns={3} divided>
+        <Grid doubling columns={5} divided='vertically'>
             <Grid.Row >
                 {cards}
             </Grid.Row>
