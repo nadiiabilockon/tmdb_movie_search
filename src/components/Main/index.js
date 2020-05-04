@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBox from '../SearchBox';
 import Movies from '../Movies';
 import { search } from "../../services/utils";
-import { Loader } from 'semantic-ui-react'
+import { Loader, Header } from 'semantic-ui-react'
 import {
     Switch,
     Route
@@ -58,7 +58,10 @@ class Main extends Component {
         let movies = <h1>There's no movies</h1>;
 
         if (this.state.movies) {
-            movies = <Movies list={this.state.movies} />;
+            movies = this.state.value ? <Movies list={this.state.movies} /> : <div>
+                <Header as='h2' icon='star' color='grey' content='Weekly trending' />
+                <Movies list={this.state.movies} />
+            </div>;
         }
 
         return movies;

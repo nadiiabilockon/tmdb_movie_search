@@ -6,9 +6,11 @@ import Main from "./components/Main";
 
 function App() {
   return (
+    <div className="outer-container">
       <Container>
         <Main />
       </Container>
+    </div>
   );
 }
 

@@ -1,19 +1,18 @@
 import React from "react";
 import { Card, Image, Grid } from "semantic-ui-react";
 import { truncStr } from "../../../services/utils";
+import './index.css';
 
 const MovieCard = props => {
     const { title, poster_path, vote_average, name, id } = props.item;
 
     return (
-        <Grid.Column>
-            <Card>
+        <Grid.Column className="movies">
+            <Card href={`/${id}`} className={poster_path ? "" : "no_image_holder"}>
                 <Image
-                    src={poster_path ? `http://image.tmdb.org/t/p/w185${poster_path}` : 'https://react.semantic-ui.com/images/wireframe/image-text.png'}
+                    src={poster_path ? `http://image.tmdb.org/t/p/w185${poster_path}` : require('../../../images/glyphicons-basic-picture.svg')}
                     wrapped
                     ui={false}
-                    as='a'
-                    href={`/${id}`}
                 />
                 <Card.Content>
                     <Card.Header>{truncStr(title || name, 19)}</Card.Header>

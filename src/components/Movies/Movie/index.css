@@ -1,0 +1,8 @@
+.movies .ui .card {
+  height: 100%;
+}
+
+.no_image_holder .image {
+  height: 100%;
+  flex: 1 1 auto !important;
+}

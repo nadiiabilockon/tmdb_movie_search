@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Card, Image, Grid } from "semantic-ui-react";
-import { useParams } from "react-router-dom";
+import { Card, Image, Grid, Header, Icon } from "semantic-ui-react";
+import { useParams, useHistory } from "react-router-dom";
 import { search } from "../../services/utils";
 import axios from "axios";
-
+import './index.css';
 let backdropIMG;
 
 const MovieCard = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     axios(
@@ -16,60 +18,61 @@ const MovieCard = () => {
     ).then(result => {
       setMovie(result.data)
     }).catch(err => console.log(err))
-  }, movie)
-  // let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster,
-  //   production = data.production,
-  //   productionCountries = data.production_countries,
-  //   genres = data.genre,
-  //   totalRevenue = data.revenue,
-  //   productionList = nestedDataToString(production),
-  //   productionCountriesList = nestedDataToString(productionCountries),
-  //   noData = '-',
-  //   genresList = nestedDataToString(genres);
-  // backdropIMG = 'https://image.tmdb.org/t/p/original' + data.backdrop;
+  })
 
-  // if (data.poster == null) {
-  //   posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g';
-  // }
-
-  // useEffect(() => {
-  //   if (data.backdrop) document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
-  // });
+  useEffect(() => {
+    if (backdropIMG) document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
+  });
 
   if (movie) {
-    const { title, tagline, genre, release, revenue, runtime, overview, poster_path, vote_average, name, id } = movie;
+    const { title, tagline, genres, release_date, production_companies, runtime, overview, poster_path, vote_average, name, id } = movie;
+    const genresList = nestedDataToString(genres);
+    const productionList = nestedDataToString(production_companies);
+
+    if (poster_path) backdropIMG = 'https://image.tmdb.org/t/p/original' + poster_path;
 
     return (
-      <Card>
-        <Image
-          src={'https://image.tmdb.org/t/p/w500' + poster_path}
-          wrapped
-          ui={false}
-        />
-        <Card.Content>
-          <Card.Header>{title}</Card.Header>
-          <Card.Meta>{tagline}</Card.Meta>
-          <Card.Description>
-            <p>{overview}</p>
-            <div className="additional-details">
-              {/* <span className="genre-list">{genresList}</span> */}
-              {/* <span className="production-list">{productionList}</span> */}
-              <Grid columns={2}>
-                <Grid.Row className="release-details">
-                  <Grid.Column>
-                    Original Release: <span className="meta-data">{release}</span>
-                  </Grid.Column>
-                  <Grid.Column>
-                    Running Time: <span className="meta-data">{runtime} mins</span>
-                  </Grid.Column>
-                  {/* <Grid.Column>Box Office: <span className="meta-data">{totalRevenue}</span></Grid.Column> */}
-                  <Grid.Column> Vote Average: <span className="meta-data">{vote_average}</span></Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </div>
-          </Card.Description>
-        </Card.Content>
-      </Card>
+      <div className="full-view-card">
+        <div>
+          <a
+            className="back-link"
+            onClick={() => history.goBack()}
+            title="Go back"
+          >
+            <Icon link inverted color='grey' size='large' name='arrow alternate circle left outline' />
+          </a>
+        </div>
+        <Card>
+          <div className={`full-view-card__image ${poster_path ? "" : "no_image_holder"}`}>
+            <Image
+              src={poster_path ? `http://image.tmdb.org/t/p/w500${poster_path}` : require('../../images/glyphicons-basic-picture.svg')}
+            />
+          </div>
+
+          <Card.Content>
+            <Header size='large'>{title || name}</Header>
+            <Card.Meta>{tagline}</Card.Meta>
+            <Card.Description>
+              <p>{overview}</p>
+              <div className="additional-details">
+                <Header size='medium'>{genresList}</Header>
+                <p>{productionList}</p>
+                <Grid columns={2}>
+                  <Grid.Row className="release-details">
+                    <Grid.Column>
+                      Original Release: <span className="meta-data">{release_date}</span>
+                    </Grid.Column>
+                    <Grid.Column>
+                      Running Time: <span className="meta-data">{runtime} mins</span>
+                    </Grid.Column>
+                    <Grid.Column> Vote Average: <span className="meta-data">{vote_average} / 10</span></Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </div>
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </div>
     )
   }
   return (<div>......</div>)

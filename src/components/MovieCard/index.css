@@ -1,0 +1,49 @@
+.full-view-card > .ui.card,
+.ui.cards > .card {
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.full-view-card .ui.card > .content {
+  border: none;
+}
+
+.full-view-card .release-details div:nth-child(n + 3) {
+  margin-top: 15px;
+}
+
+.full-view-card .production-list {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.full-view-card .meta-data {
+  display: block;
+  font-size: 1.6em;
+  line-height: 1.1em;
+}
+
+.full-view-card > .image,
+.ui.cards > .card > .image {
+  width: 300px;
+}
+
+.full-view-card__image {
+  padding: 1rem;
+}
+
+.no_image_holder .ui.image {
+  max-width: 300px;
+  height: 450px;
+  background-color: #dbdbdb;
+  background-size: 50%;
+  box-sizing: border-box;
+  border: 1px solid #d7d7d7;
+}
+
+.meta-data-container .additional-details .genre-list {
+  display: block;
+  color: #00fc87;
+  font-size: 1.4em;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import { Input, Segment, Image, Grid } from 'semantic-ui-react'
+import { Input, Image, Grid } from 'semantic-ui-react'
 import './index.css';
 import Logo from '../../images/tmdb.svg'
 
 const SearchBox = ((props) => {
     return (
-        <Segment inverted>
+        <div className="nav">
             <Grid verticalAlign='middle'>
                 <Grid.Column width={4}>
                     <Image src={Logo} size='small' wrapped />
@@ -17,7 +17,7 @@ const SearchBox = ((props) => {
                         placeholder="Search Movie Title..." />
                 </Grid.Column>
             </Grid>
-        </Segment>
+        </div>
     );
 })
 
