@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import SearchBox from '../SearchBox';
 import Movies from '../Movies';
 import { search } from "../../services/utils";
-import { Loader, Header } from 'semantic-ui-react'
+import { Loader, Header, Divider } from 'semantic-ui-react'
 import {
     Switch,
-    Route
+    Route,
+    withRouter
 } from "react-router-dom";
+
 import NewCard from "../MovieCard"
 
 class Main extends Component {
@@ -27,6 +29,8 @@ class Main extends Component {
     search = val => {
         this.setState({ loading: true });
 
+        const { location, history } = this.props;
+
         if (!val) {
             return this.getTrending();
         }
@@ -34,6 +38,10 @@ class Main extends Component {
         search(
             `https://api.themoviedb.org/3/search/movie?api_key=cfe422613b250f702980a3bbf9e90716&query=${val}`
         ).then(results => {
+            if (location.pathname !== '/') {
+                history.push("/")
+            }
+
             this.setState({ movies: results, loading: false });
         })
     };
@@ -55,13 +63,19 @@ class Main extends Component {
     renderMovies = () => {
         if (this.state.loading) return <Loader active size='large'>Loading</Loader>
 
-        let movies = <h1>There's no movies</h1>;
+        let movies = <Divider className="white-color" horizontal>
+            <Header as='h3'>There's no movies</Header>
+        </Divider>;
 
-        if (this.state.movies) {
-            movies = this.state.value ? <Movies list={this.state.movies} /> : <div>
-                <Header as='h2' icon='star' color='grey' content='Weekly trending' />
+        if (this.state.movies && this.state.movies.length) {
+            movies = this.state.value ?
                 <Movies list={this.state.movies} />
-            </div>;
+                : <div>
+                    <Divider horizontal><Header className="white-color" as='h2'
+                        icon='star'
+                        content='Weekly trending' /></Divider>
+                    <Movies list={this.state.movies} />
+                </div>;
         }
 
         return movies;
@@ -80,4 +94,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default withRouter(Main);

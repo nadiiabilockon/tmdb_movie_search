@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, Image, Grid, Header, Icon } from "semantic-ui-react";
+import { Card, Image, Grid, Header, Icon, Divider } from "semantic-ui-react";
 import { useParams, useHistory } from "react-router-dom";
-import { search } from "../../services/utils";
 import axios from "axios";
 import './index.css';
+
 let backdropIMG;
 
 const MovieCard = () => {
@@ -25,7 +25,9 @@ const MovieCard = () => {
   });
 
   if (movie) {
-    const { title, tagline, genres, release_date, production_companies, runtime, overview, poster_path, vote_average, name, id } = movie;
+    const { title, tagline, genres, release_date, production_companies,
+      runtime, overview, poster_path, vote_average, name } = movie;
+
     const genresList = nestedDataToString(genres);
     const productionList = nestedDataToString(production_companies);
 
@@ -39,23 +41,27 @@ const MovieCard = () => {
             onClick={() => history.goBack()}
             title="Go back"
           >
-            <Icon link inverted color='grey' size='large' name='arrow alternate circle left outline' />
+            <Icon link size='large' name='arrow alternate circle left outline' />
           </a>
         </div>
         <Card>
           <div className={`full-view-card__image ${poster_path ? "" : "no_image_holder"}`}>
             <Image
-              src={poster_path ? `http://image.tmdb.org/t/p/w500${poster_path}` : require('../../images/glyphicons-basic-picture.svg')}
+              src={poster_path ?
+                `http://image.tmdb.org/t/p/w500${poster_path}`
+                : require('../../images/glyphicons-basic-picture.svg')
+              }
             />
           </div>
 
           <Card.Content>
-            <Header size='large'>{title || name}</Header>
-            <Card.Meta>{tagline}</Card.Meta>
+            <Header as="h1">{title || name}</Header>
+            <Divider />
+            <Card.Meta className="tagline">{tagline}</Card.Meta>
             <Card.Description>
               <p>{overview}</p>
               <div className="additional-details">
-                <Header size='medium'>{genresList}</Header>
+                <Header sub className="genre-list">{genresList}</Header>
                 <p>{productionList}</p>
                 <Grid columns={2}>
                   <Grid.Row className="release-details">
@@ -75,7 +81,9 @@ const MovieCard = () => {
       </div>
     )
   }
-  return (<div>......</div>)
+  return (
+    <Header as="h2">No info</Header>
+  )
 }
 
 
@@ -87,7 +95,7 @@ function nestedDataToString(nestedData) {
       nestedArray.push(item.name);
     });
   }
-  resultString = nestedArray.join(', '); // array to string
+  resultString = nestedArray.join(', ');
   return resultString;
 };
 

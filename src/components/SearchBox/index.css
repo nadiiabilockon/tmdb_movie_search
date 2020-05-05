@@ -6,6 +6,10 @@
   font-size: 1.2rem;
 }
 
+.full-width .transparent.inverted.input > input {
+  color: #eadead;
+}
+
 .nav {
   margin-bottom: 1rem;
   padding: 1em 1em;

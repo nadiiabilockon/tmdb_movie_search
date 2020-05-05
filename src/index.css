@@ -9,11 +9,17 @@ body {
   line-height: 1.5;
 }
 
+.white-color > .icon,
+.white-color > .content,
+.white-color > .header {
+  color: #ffffff;
+}
+
 .outer-container {
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.85) 15%,
-    rgba(0, 0, 0, 0.2) 40%,
-    #000 90%
+  background-image:linear-gradient(
+    rgba(46, 41, 78, 0.95) 14%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(62, 160, 96, 0.91) 90%
   );
   background-attachment: fixed;
   margin: 0;
