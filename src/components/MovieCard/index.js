@@ -33,12 +33,17 @@ const MovieCard = () => {
 
     if (poster_path) backdropIMG = 'https://image.tmdb.org/t/p/original' + poster_path;
 
+    const handleBack = () => {
+      document.body.style.backgroundImage = "none";
+      history.goBack()
+    }
+
     return (
       <div className="full-view-card">
         <div>
           <a
             className="back-link"
-            onClick={() => history.goBack()}
+            onClick={handleBack}
             title="Go back"
           >
             <Icon link size='large' name='arrow alternate circle left outline' />
