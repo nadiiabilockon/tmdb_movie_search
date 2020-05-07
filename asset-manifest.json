@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/tmdb_movie_search/static/css/main.4df06a66.chunk.css",
-    "main.js": "/tmdb_movie_search/static/js/main.ca66d1a4.chunk.js",
-    "main.js.map": "/tmdb_movie_search/static/js/main.ca66d1a4.chunk.js.map",
+    "main.css": "/tmdb_movie_search/static/css/main.0922f52a.chunk.css",
+    "main.js": "/tmdb_movie_search/static/js/main.c624a9ba.chunk.js",
+    "main.js.map": "/tmdb_movie_search/static/js/main.c624a9ba.chunk.js.map",
     "runtime-main.js": "/tmdb_movie_search/static/js/runtime-main.fb5ea00f.js",
     "runtime-main.js.map": "/tmdb_movie_search/static/js/runtime-main.fb5ea00f.js.map",
     "static/css/2.a7346a2e.chunk.css": "/tmdb_movie_search/static/css/2.a7346a2e.chunk.css",
-    "static/js/2.7b7937ad.chunk.js": "/tmdb_movie_search/static/js/2.7b7937ad.chunk.js",
-    "static/js/2.7b7937ad.chunk.js.map": "/tmdb_movie_search/static/js/2.7b7937ad.chunk.js.map",
+    "static/js/2.a0bde003.chunk.js": "/tmdb_movie_search/static/js/2.a0bde003.chunk.js",
+    "static/js/2.a0bde003.chunk.js.map": "/tmdb_movie_search/static/js/2.a0bde003.chunk.js.map",
     "index.html": "/tmdb_movie_search/index.html",
-    "precache-manifest.d3dcea5058eb82dd6c565e6fd67290a8.js": "/tmdb_movie_search/precache-manifest.d3dcea5058eb82dd6c565e6fd67290a8.js",
+    "precache-manifest.ff292f862beaee280e69626a32347542.js": "/tmdb_movie_search/precache-manifest.ff292f862beaee280e69626a32347542.js",
     "service-worker.js": "/tmdb_movie_search/service-worker.js",
     "static/css/2.a7346a2e.chunk.css.map": "/tmdb_movie_search/static/css/2.a7346a2e.chunk.css.map",
-    "static/css/main.4df06a66.chunk.css.map": "/tmdb_movie_search/static/css/main.4df06a66.chunk.css.map",
-    "static/js/2.7b7937ad.chunk.js.LICENSE.txt": "/tmdb_movie_search/static/js/2.7b7937ad.chunk.js.LICENSE.txt",
+    "static/css/main.0922f52a.chunk.css.map": "/tmdb_movie_search/static/css/main.0922f52a.chunk.css.map",
+    "static/js/2.a0bde003.chunk.js.LICENSE.txt": "/tmdb_movie_search/static/js/2.a0bde003.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/tmdb_movie_search/static/media/outline-icons.ef60a4f6.woff",
     "static/media/glyphicons-basic-picture.svg": "/tmdb_movie_search/static/media/glyphicons-basic-picture.7ebd0560.svg",
     "static/media/tmdb.svg": "/tmdb_movie_search/static/media/tmdb.27b65cb4.svg"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.fb5ea00f.js",
     "static/css/2.a7346a2e.chunk.css",
-    "static/js/2.7b7937ad.chunk.js",
-    "static/css/main.4df06a66.chunk.css",
-    "static/js/main.ca66d1a4.chunk.js"
+    "static/js/2.a0bde003.chunk.js",
+    "static/css/main.0922f52a.chunk.css",
+    "static/js/main.c624a9ba.chunk.js"
   ]
 }
