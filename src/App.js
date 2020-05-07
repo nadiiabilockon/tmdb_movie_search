@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Container
 } from 'semantic-ui-react'
-import Main from "./components/Main";
+import MovieView from "./pages/MovieView";
 
 function App() {
   return (
     <div className="outer-container">
       <Container>
-        <Main />
+        <MovieView />
       </Container>
     </div>
   );

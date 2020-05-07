@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "semantic-ui-react"
 import Movie from "./Movie";
 
-const Movies = ({ list }) => {
+const MovieList = ({ list }) => {
     let cards = <h3>Loading...</h3>;
 
     if (list) {
@@ -18,4 +18,4 @@ const Movies = ({ list }) => {
     );
 };
 
-export default Movies;
+export default MovieList ;

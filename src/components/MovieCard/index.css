@@ -65,7 +65,6 @@
   padding-top: 1rem;
 }
 
-.additional-details .genre-list,
 .ui.card .tagline {
   color: #3ea060;
   font-size: 1.4em;
@@ -74,4 +73,18 @@
 .meta-data {
   color: #3ea060;
   font-size: 1.3em;
+}
+
+.genre-list {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.genre-list span {
+  border: 2px solid #3ea060;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 10px;
+  margin: 5px;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBox from '../SearchBox';
-import Movies from '../Movies';
+import SearchBox from '../../components/SearchBox';
+import Movies from '../../components/MovieList';
 import { search } from "../../services/utils";
 import { Loader, Header, Divider } from 'semantic-ui-react'
 import {
@@ -9,17 +9,13 @@ import {
     withRouter
 } from "react-router-dom";
 
-import NewCard from "../MovieCard"
+import MovieCard from "../../components/MovieCard"
 
-class Main extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            movies: null,
-            loading: false,
-            value: ""
-        }
+class MovieView extends Component {
+    state = {
+        movies: null,
+        loading: false,
+        value: ""
     }
 
     componentDidMount() {
@@ -61,6 +57,8 @@ class Main extends Component {
     };
 
     renderMovies = () => {
+        document.body.style.backgroundImage = "none";
+
         if (this.state.loading) return <Loader active size='large'>Loading</Loader>
 
         let movies = <Divider className="white-color" horizontal>
@@ -87,11 +85,11 @@ class Main extends Component {
                 <SearchBox onChange={this.onChangeHandler} />
                 <Switch>
                     <Route path="/" exact render={this.renderMovies} />
-                    <Route path="/:movieId" component={NewCard} />
+                    <Route path="/:movieId" component={MovieCard} />
                 </Switch>
             </React.Fragment>
         )
     }
 }
 
-export default withRouter(Main);
+export default withRouter(MovieView);

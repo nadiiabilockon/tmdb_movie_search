@@ -10,7 +10,7 @@ const MovieCard = props => {
     return (
         <Grid.Column className="movies">
             <Link to={`/${id}`}>
-                <Card className={poster_path ? "" : "no_image_holder"}>
+                <Card className={poster_path && "no_image_holder"}>
                     <Image
                         src={poster_path ? `http://image.tmdb.org/t/p/w185${poster_path}` : require('../../../images/glyphicons-basic-picture.svg')}
                         wrapped

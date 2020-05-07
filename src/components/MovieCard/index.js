@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Card, Image, Grid, Header, Icon, Divider } from "semantic-ui-react";
-import { useParams, useHistory } from "react-router-dom";
+import { Card, Image, Grid, Header, Divider } from "semantic-ui-react";
+import { useParams } from "react-router-dom";
+import BackButton from "../BackButton"
 import axios from "axios";
 import './index.css';
 
-let backdropIMG;
+let backdropIMG = '';
 
 const MovieCard = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
-  const history = useHistory();
 
   useEffect(() => {
     axios(
@@ -18,90 +17,65 @@ const MovieCard = () => {
     ).then(result => {
       setMovie(result.data)
     }).catch(err => console.log(err))
-  })
+  }, [])
 
-  useEffect(() => {
-    if (backdropIMG) document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
-  });
-
-  if (movie) {
-    const { title, tagline, genres, release_date, production_companies,
+  const renderMovie = () => {
+    const { title, tagline, genres, release_date,
       runtime, overview, poster_path, vote_average, name } = movie;
 
-    const genresList = nestedDataToString(genres);
-    const productionList = nestedDataToString(production_companies);
+    const genresList = genres && genres.map(g => <span key={g.id}>{g.name}</span>)
 
-    if (poster_path) backdropIMG = 'https://image.tmdb.org/t/p/original' + poster_path;
-
-    const handleBack = () => {
-      document.body.style.backgroundImage = "none";
-      history.goBack()
+    if (poster_path) {
+      backdropIMG = 'https://image.tmdb.org/t/p/original' + poster_path;
+      document.body.style.transition = 'background-image 0.5s ease-in-out;'
+      document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
     }
 
     return (
-      <div className="full-view-card">
-        <div>
-          <a
-            className="back-link"
-            onClick={handleBack}
-            title="Go back"
-          >
-            <Icon link size='large' name='arrow alternate circle left outline' />
-          </a>
+      <React.Fragment>
+        <div className={`full-view-card__image ${poster_path && "no_image_holder"}`}>
+          <Image
+            src={poster_path ?
+              `http://image.tmdb.org/t/p/w500${poster_path}`
+              : require('../../images/glyphicons-basic-picture.svg')
+            }
+          />
         </div>
-        <Card>
-          <div className={`full-view-card__image ${poster_path ? "" : "no_image_holder"}`}>
-            <Image
-              src={poster_path ?
-                `http://image.tmdb.org/t/p/w500${poster_path}`
-                : require('../../images/glyphicons-basic-picture.svg')
-              }
-            />
-          </div>
 
-          <Card.Content>
-            <Header as="h1">{title || name}</Header>
-            <Divider />
-            <Card.Meta className="tagline">{tagline}</Card.Meta>
-            <Card.Description>
-              <p>{overview}</p>
-              <div className="additional-details">
-                <Header sub className="genre-list">{genresList}</Header>
-                <p>{productionList}</p>
-                <Grid columns={2}>
-                  <Grid.Row className="release-details">
-                    <Grid.Column>
-                      Original Release: <span className="meta-data">{release_date}</span>
-                    </Grid.Column>
-                    <Grid.Column>
-                      Running Time: <span className="meta-data">{runtime} mins</span>
-                    </Grid.Column>
-                    <Grid.Column> Vote Average: <span className="meta-data">{vote_average} / 10</span></Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              </div>
-            </Card.Description>
-          </Card.Content>
-        </Card>
-      </div>
+        <Card.Content>
+          <Header as="h1">{title || name}</Header>
+          <Divider />
+          <Card.Meta className="tagline">{tagline}</Card.Meta>
+          <Card.Description>
+            <p>{overview}</p>
+            <div className="additional-details">
+              <Grid columns={2}>
+                <Grid.Row className="release-details">
+                  <Grid.Column>
+                    Original Release: <span className="meta-data">{release_date}</span>
+                  </Grid.Column>
+                  <Grid.Column>
+                    Running Time: <span className="meta-data">{runtime} mins</span>
+                  </Grid.Column>
+                  <Grid.Column> Vote Average: <span className="meta-data">{vote_average} / 10</span></Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <div className="genre-list">{genresList}</div>
+            </div>
+          </Card.Description>
+        </Card.Content>
+      </React.Fragment>
     )
   }
+
   return (
-    <Header as="h2">No info</Header>
+    <div className="full-view-card">
+      <BackButton />
+      <Card>
+        {movie && renderMovie()}
+      </Card>
+    </div>
   )
 }
-
-
-function nestedDataToString(nestedData) {
-  let nestedArray = [],
-    resultString;
-  if (nestedData !== undefined) {
-    nestedData.forEach(function (item) {
-      nestedArray.push(item.name);
-    });
-  }
-  resultString = nestedArray.join(', ');
-  return resultString;
-};
 
 export default MovieCard;
