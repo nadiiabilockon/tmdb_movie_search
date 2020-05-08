@@ -15,6 +15,7 @@ const MovieCard = props => {
                         src={poster_path ? `http://image.tmdb.org/t/p/w185${poster_path}` : require('../../../images/glyphicons-basic-picture.svg')}
                         wrapped
                         ui={false}
+                        alt="Poster image"
                     />
                     <Card.Content>
                         <Card.Header>{truncStr(title || name, 19)}</Card.Header>

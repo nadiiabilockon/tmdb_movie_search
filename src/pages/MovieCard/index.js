@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Image, Grid, Header, Divider } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
-import BackButton from "../BackButton"
+import BackButton from "../../components/BackButton"
 import axios from "axios";
 import './index.css';
 
@@ -38,7 +38,9 @@ const MovieCard = () => {
             src={poster_path ?
               `http://image.tmdb.org/t/p/w500${poster_path}`
               : require('../../images/glyphicons-basic-picture.svg')
+              
             }
+            alt="Poster image"
           />
         </div>
 

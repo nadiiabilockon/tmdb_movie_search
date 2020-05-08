@@ -9,7 +9,7 @@ import {
     withRouter
 } from "react-router-dom";
 
-import MovieCard from "../../components/MovieCard"
+import MovieCard from "../MovieCard"
 
 class MovieView extends Component {
     state = {

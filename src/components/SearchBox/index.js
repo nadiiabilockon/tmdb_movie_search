@@ -9,7 +9,7 @@ class SearchBox extends PureComponent {
             <div className="nav">
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={4}>
-                        <Image src={Logo} size='small' wrapped />
+                        <Image src={Logo} alt="Logo" size='small' wrapped />
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <Input transparent inverted
